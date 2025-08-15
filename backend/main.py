@@ -4,8 +4,10 @@ import shutil
 import os
 from datetime import datetime
 from PIL import Image
-import pytesseract
+#import pytesseract
 import re
+import easyocr
+
 
 app = FastAPI()
 
@@ -23,7 +25,7 @@ app.add_middleware(
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-
+reader = easyocr.Reader(['en'])
 # ---------------------------
 # Medical info (descriptions + advice)
 # ---------------------------
@@ -551,22 +553,22 @@ async def upload_report(file: UploadFile = File(...), user_gender: str = Form(No
     filename = f"{timestamp}_{file.filename}"
     filepath = os.path.join(UPLOAD_DIR, filename)
 
-    # save file
+    # Save file
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # OCR
+    # --------------------------
+    # OCR using EasyOCR
+    # --------------------------
     try:
-        img = Image.open(filepath)
-        # convert if needed
-        if img.mode != "RGB":
-            img = img.convert("RGB")
-        extracted_text = pytesseract.image_to_string(img)
+        # EasyOCR works with file paths directly
+        extracted_text_lines = reader.readtext(filepath, detail=0)  # list of text lines
+        extracted_text = "\n".join(extracted_text_lines)
     except Exception as e:
         extracted_text = ""
         print("OCR error:", e)
 
-    # detect gender via OCR unless user provided an explicit gender
+    # Detect gender via OCR unless user provided an explicit gender
     detected_gender = "unknown"
     gender_source = "none"
     if user_gender and user_gender.lower() in ("male", "female"):
@@ -575,10 +577,10 @@ async def upload_report(file: UploadFile = File(...), user_gender: str = Form(No
     else:
         detected_gender, gender_source = detect_gender_from_text(extracted_text)
 
-    # parse values using gender-aware thresholds
+    # Parse values using gender-aware thresholds
     parsed_results = parse_medical_report(extracted_text, gender=detected_gender)
 
-    # optional summary
+    # Optional summary
     issues = []
     for p, info in parsed_results.items():
         if info.get("meaning") and info["meaning"] != "Within normal range.":
