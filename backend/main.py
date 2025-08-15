@@ -12,14 +12,14 @@ app = FastAPI()
 # CORS (allow your frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://deepdoc.vercel.app/"],
+    allow_origins=["https://deepdoc.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Path to your tesseract.exe (update if different)
-pytesseract.pytesseract.tesseract_cmd = r"D:\Tesseract-OCR\tesseract.exe"
+#pytesseract.pytesseract.tesseract_cmd = r"D:\Tesseract-OCR\tesseract.exe"
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
