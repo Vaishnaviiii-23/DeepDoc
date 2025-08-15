@@ -25,7 +25,7 @@ app.add_middleware(
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-reader = easyocr.Reader(['en'])
+reader = easyocr.Reader(['en'], gpu=False)
 # ---------------------------
 # Medical info (descriptions + advice)
 # ---------------------------
