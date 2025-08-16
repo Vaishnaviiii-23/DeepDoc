@@ -24,6 +24,7 @@ app.add_middleware(
 )
 
 # Path to your tesseract.exe (update if different)
+pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 pytesseract.pytesseract.tesseract_cmd = r"D:\Tesseract-OCR\tesseract.exe"
 
 UPLOAD_DIR = "uploads"
