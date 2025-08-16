@@ -9,10 +9,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [gender, setGender] = useState("male"); // default gender
 
-const API_URL =
+ const API_URL =
   process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_API_URL || "https://deepdoc-1ox2.onrender.com"
-    : "http://localhost:8000";
+    ? process.env.REACT_APP_API_URL
+    : "https://deepdoc-1ox2.onrender.com";
 
 
   async function handleUpload(e) {
