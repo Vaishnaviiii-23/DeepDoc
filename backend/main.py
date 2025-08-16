@@ -542,15 +542,6 @@ def parse_medical_report(text, gender="unknown"):
                     break
 
     return results
-@app.get("/check-tesseract")
-def check_tesseract():
-    import subprocess
-    try:
-        version = subprocess.check_output(["tesseract", "--version"]).decode("utf-8")
-        return {"tesseract_version": version}
-    except Exception as e:
-        return {"error": str(e)}
-
 # ---------------------------
 # Upload endpoint
 # ---------------------------
@@ -608,3 +599,11 @@ async def upload_report(file: UploadFile = File(...), user_gender: str = Form(No
         "parsed_results": parsed_results,
         "summary": summary
     }
+
+@app.get("/check-tesseract")
+def check_tesseract():
+    try:
+        version = subprocess.check_output(["tesseract", "--version"]).decode("utf-8")
+        return {"tesseract_version": version}
+    except Exception as e:
+        return {"error": str(e)}
