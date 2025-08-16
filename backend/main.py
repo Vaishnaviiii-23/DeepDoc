@@ -4,28 +4,26 @@ import shutil
 import os
 from datetime import datetime
 from PIL import Image
-#import pytesseract
+import pytesseract
 import re
-import easyocr
-
 
 app = FastAPI()
 
 # CORS (allow your frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://deepdoc.vercel.app"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Path to your tesseract.exe (update if different)
-#pytesseract.pytesseract.tesseract_cmd = r"D:\Tesseract-OCR\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = r"D:\Tesseract-OCR\tesseract.exe"
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-reader = easyocr.Reader(['en'], gpu=False)
+
 # ---------------------------
 # Medical info (descriptions + advice)
 # ---------------------------
@@ -553,22 +551,22 @@ async def upload_report(file: UploadFile = File(...), user_gender: str = Form(No
     filename = f"{timestamp}_{file.filename}"
     filepath = os.path.join(UPLOAD_DIR, filename)
 
-    # Save file
+    # save file
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # --------------------------
-    # OCR using EasyOCR
-    # --------------------------
+    # OCR
     try:
-        # EasyOCR works with file paths directly
-        extracted_text_lines = reader.readtext(filepath, detail=0)  # list of text lines
-        extracted_text = "\n".join(extracted_text_lines)
+        img = Image.open(filepath)
+        # convert if needed
+        if img.mode != "RGB":
+            img = img.convert("RGB")
+        extracted_text = pytesseract.image_to_string(img)
     except Exception as e:
         extracted_text = ""
         print("OCR error:", e)
 
-    # Detect gender via OCR unless user provided an explicit gender
+    # detect gender via OCR unless user provided an explicit gender
     detected_gender = "unknown"
     gender_source = "none"
     if user_gender and user_gender.lower() in ("male", "female"):
@@ -577,10 +575,10 @@ async def upload_report(file: UploadFile = File(...), user_gender: str = Form(No
     else:
         detected_gender, gender_source = detect_gender_from_text(extracted_text)
 
-    # Parse values using gender-aware thresholds
+    # parse values using gender-aware thresholds
     parsed_results = parse_medical_report(extracted_text, gender=detected_gender)
 
-    # Optional summary
+    # optional summary
     issues = []
     for p, info in parsed_results.items():
         if info.get("meaning") and info["meaning"] != "Within normal range.":

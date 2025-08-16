@@ -12,7 +12,7 @@ function App() {
  const API_URL =
   process.env.NODE_ENV === "production"
     ? process.env.REACT_APP_API_URL
-    : "https://deepdoc-hchg.onrender.com";
+    : "http://localhost:8000";
 
 
   async function handleUpload(e) {
