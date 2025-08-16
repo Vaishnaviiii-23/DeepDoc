@@ -542,6 +542,14 @@ def parse_medical_report(text, gender="unknown"):
                     break
 
     return results
+@app.get("/check-tesseract")
+def check_tesseract():
+    import subprocess
+    try:
+        version = subprocess.check_output(["tesseract", "--version"]).decode("utf-8")
+        return {"tesseract_version": version}
+    except Exception as e:
+        return {"error": str(e)}
 
 # ---------------------------
 # Upload endpoint
