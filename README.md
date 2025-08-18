@@ -76,7 +76,7 @@ Open in browser: http://localhost:3000
 ### OCR Results
 ![OCR Result](./screenshots/ocr_result.png)
 
-### Contribution Guidelines
+## Contribution Guidelines
 
 Feel free to contribute! Please:
 
