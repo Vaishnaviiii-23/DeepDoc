@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+#  🩺👩‍⚕️DeepDoc — Real-Time Medical Report Translator & Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An AI-powered web app that lets users upload medical reports and instantly receive simplified explanations, parameter highlights, and personalized health advice.
+---
 
-## Available Scripts
+##  Repository Overview
+```DeepDoc/
+│
+├── backend/
+│ ├── main.py # FastAPI backend logic
+│ ├── requirements.txt # Python dependencies
+│ └── uploads/ # Stores uploaded reports
+│
+├── frontend/
+│ ├── public/ # Static frontend assets
+│ ├── src/ # React source code
+│ ├── package.json # Frontend dependencies
+│ └── .gitignore # Ignored frontend files
+│
+├── .gitignore # Root ignore rules
+└── README.md # Project overview
+```
 
-In the project directory, you can run:
+---
 
-### `npm start`
+##  Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Image/Text Upload**: Upload report images for analysis.
+- **OCR Extraction**: Converts images to extract medical text.
+- **Parameter Analysis**: Identifies key medical metrics (e.g., hemoglobin, WBC) and categorizes them.
+- **Human-Friendly Recommendations**: Displays easy-to-understand meanings and medical advice directly on the page.
+- **Gender-Aware Interpretation**: Uses gender input to adjust normal range evaluations.
+- **Frontend Grouping**: Organized UI by category — CBC, Liver, Kidney, and more.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+##  Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Component      | Technologies Used                                   |
+|----------------|------------------------------------------------------|
+| **Frontend**   | React, JavaScript, CSS, `react-icons`                |
+| **Backend**    | Python, FastAPI, Uvicorn, Pillow, pytesseract, regex |   |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##  Setup & Run Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Clone Repository
+```bash
+git clone https://github.com/Vaishnaviiii-23/DeepDoc.git
+cd DeepDoc
+cd backend
+python -m venv env
+. env/Scripts/activate 
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+Backend will run at: http://localhost:8000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
+```bash
+cd frontend
+npm install
+npm start
+```
+Open in browser: http://localhost:3000
 
-### `npm run eject`
+## 📸 Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend  
+(screenshots/Frontend.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Uploaded report and extracted parameters  
+(screenshots/parameters.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### OCR Results
+(screenshots/ocr results.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Contribution Guidelines
 
-## Learn More
+Feel free to contribute! Please:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Fork the repo
+Create a new branch (feature/…)
+Make changes and push your branch
+Open a Pull Request
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🧑‍💻 Author
+Vaishnavi P Poojari

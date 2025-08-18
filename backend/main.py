@@ -6,26 +6,19 @@ from datetime import datetime
 from PIL import Image
 import pytesseract
 import re
-import subprocess
 
 app = FastAPI()
 
 # CORS (allow your frontend)
-origins = [
-    "http://localhost:3000",  
-    "https://deepdocc.onrender.com",  
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Path to your tesseract.exe (update if different)
-pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 pytesseract.pytesseract.tesseract_cmd = r"D:\Tesseract-OCR\tesseract.exe"
 
 UPLOAD_DIR = "uploads"
@@ -543,6 +536,7 @@ def parse_medical_report(text, gender="unknown"):
                     break
 
     return results
+
 # ---------------------------
 # Upload endpoint
 # ---------------------------
@@ -600,11 +594,3 @@ async def upload_report(file: UploadFile = File(...), user_gender: str = Form(No
         "parsed_results": parsed_results,
         "summary": summary
     }
-
-@app.get("/check-tesseract")
-def check_tesseract():
-    try:
-        version = subprocess.check_output(["tesseract", "--version"]).decode("utf-8")
-        return {"tesseract_version": version}
-    except Exception as e:
-        return {"error": str(e)}
