@@ -68,13 +68,13 @@ Open in browser: http://localhost:3000
 ## 📸 Screenshots
 
 ### Frontend  
-(./screenshots/Frontend.png)
+![Upload Report](./screenshots/upload_report.png)
 
 ### Uploaded report and extracted parameters  
-(./screenshots/parameters.png)
+![Extracted Parameters](./screenshots/extracted_parameters.png)
 
 ### OCR Results
-(./screenshots/ocr results.png)
+![OCR Result](./screenshots/ocr_result.png)
 
 ### Contribution Guidelines
 
