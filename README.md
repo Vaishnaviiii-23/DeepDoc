@@ -81,8 +81,11 @@ Open in browser: http://localhost:3000
 Feel free to contribute! Please:
 
 Fork the repo
+
 Create a new branch (feature/…)
+
 Make changes and push your branch
+
 Open a Pull Request
 
 ## 🧑‍💻 Author
