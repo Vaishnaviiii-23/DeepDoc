@@ -34,12 +34,22 @@ An AI-powered web app that lets users upload medical reports and instantly recei
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
-| Component      | Technologies Used                                   |
-|----------------|------------------------------------------------------|
-| **Frontend**   | React, JavaScript, CSS, `react-icons`                |
-| **Backend**    | Python, FastAPI, Uvicorn, Pillow, pytesseract, regex |   |
+**Frontend**  
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![React Icons](https://img.shields.io/badge/React%20Icons-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+
+**Backend**  
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Uvicorn](https://img.shields.io/badge/Uvicorn-4B8BBE?style=for-the-badge&logo=python&logoColor=white)
+![Pillow](https://img.shields.io/badge/Pillow-92C021?style=for-the-badge&logo=python&logoColor=white)
+![pytesseract](https://img.shields.io/badge/Tesseract-5D92CB?style=for-the-badge&logo=google&logoColor=white)
+![Regex](https://img.shields.io/badge/Regex-FF9800?style=for-the-badge&logo=regex&logoColor=white)
+ |
 
 ---
 
