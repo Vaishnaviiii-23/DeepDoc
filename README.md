@@ -49,7 +49,7 @@ An AI-powered web app that lets users upload medical reports and instantly recei
 ![Pillow](https://img.shields.io/badge/Pillow-92C021?style=for-the-badge&logo=python&logoColor=white)
 ![pytesseract](https://img.shields.io/badge/Tesseract-5D92CB?style=for-the-badge&logo=google&logoColor=white)
 ![Regex](https://img.shields.io/badge/Regex-FF9800?style=for-the-badge&logo=regex&logoColor=white)
- |
+
 
 ---
 
